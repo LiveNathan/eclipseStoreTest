@@ -37,7 +37,7 @@ public class EclipseAccountAdapter {
     public void save(Account account, StorerType storerType) {
         DataRoot root = getRoot();
         root.accounts().add(account);
-        store(root.accounts(), storerType);  // Fails
+        store(root.accounts().getUsernameToAccount(), storerType);
     }
 
     @Read

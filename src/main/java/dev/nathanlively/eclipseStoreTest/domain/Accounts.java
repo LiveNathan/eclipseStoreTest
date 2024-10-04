@@ -11,6 +11,10 @@ public class Accounts {
         super();
     }
 
+    public Map<String, Account> getUsernameToAccount() {
+        return usernameToAccount;
+    }
+
     public void add(final Account account) {
         this.addToCollection(account);
     }
