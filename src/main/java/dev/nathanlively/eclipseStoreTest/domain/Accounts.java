@@ -11,8 +11,8 @@ public class Accounts {
         super();
     }
 
-    public Map<String, Account> getUsernameToAccount() {
-        return usernameToAccount;
+    public Map<String, Account> usernameToAccount() {
+        return usernameToAccount;  // Collections.unmodifiableMap will not work here!
     }
 
     public void add(final Account account) {
