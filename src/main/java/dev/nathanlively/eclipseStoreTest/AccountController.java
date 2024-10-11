@@ -23,13 +23,14 @@ public class AccountController {
     }
 
     @GetMapping("/generate")
-    public ResponseEntity<Void> generateNewAccount() {
+    public ResponseEntity<String> generateNewAccount() {
         String randomUsername = "user-" + UUID.randomUUID();
-        String randomHashedPassword = UUID.randomUUID().toString(); // You might want to use a real hash in a production app
+        String randomHashedPassword = UUID.randomUUID().toString();
 
         Account newAccount = Account.create(randomUsername, randomHashedPassword);
-        accountAdapter.save(newAccount, StorerType.EAGER);
+        int count = accountAdapter.save(newAccount, StorerType.EAGER);
 
-        return ResponseEntity.ok().build();
+        String successMessage = String.format("Account with username %s created. Total accounts: %s", randomUsername, count);
+        return ResponseEntity.ok(successMessage);
     }
 }

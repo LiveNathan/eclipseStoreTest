@@ -8,8 +8,6 @@ import org.eclipse.store.integrations.spring.boot.types.concurrent.Write;
 import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.aot.hint.annotation.Reflective;
-import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
@@ -38,9 +36,10 @@ public class EclipseAccountAdapter {
     }
 
     @Write
-    public void save(Account account, StorerType storerType) {
+    public int save(Account account, StorerType storerType) {
         getRoot().accounts().add(account);
         store(getRoot().accounts().usernameToAccount(), storerType);
+        return getRoot().accounts().all().size();
     }
 
     @Read
