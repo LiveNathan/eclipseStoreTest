@@ -8,12 +8,16 @@ import org.eclipse.store.integrations.spring.boot.types.concurrent.Write;
 import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.annotation.Reflective;
+import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//@RegisterReflectionForBinding(EclipseAccountAdapter.class)  // Experiment 4
+//@Reflective  // Experiment 3
 public class EclipseAccountAdapter {
     private final EmbeddedStorageManager storageManager;
     private static final Logger log = LoggerFactory.getLogger(EclipseAccountAdapter.class);
