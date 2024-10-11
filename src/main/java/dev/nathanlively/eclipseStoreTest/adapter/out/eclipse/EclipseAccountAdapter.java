@@ -35,15 +35,13 @@ public class EclipseAccountAdapter {
 
     @Write
     public void save(Account account, StorerType storerType) {
-        DataRoot root = getRoot();
-        root.accounts().add(account);
-        store(root.accounts().usernameToAccount(), storerType);
+        getRoot().accounts().add(account);
+        store(getRoot().accounts().usernameToAccount(), storerType);
     }
 
     @Read
     public List<Account> findAll() {
-        DataRoot root = getRoot();
-        return new ArrayList<>(root.accounts().all());
+        return new ArrayList<>(getRoot().accounts().all());
     }
 
     private DataRoot getRoot() {

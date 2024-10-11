@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.EnumSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.aot.DisabledInAotMode;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -21,12 +23,12 @@ class EclipseAccountAdapterTest {
     @TempDir
     Path storageDir;
     private EclipseAccountAdapter adapter;
-    private ApplicationContext mockContext;
+    private ApplicationContext context;
 
     @ParameterizedTest
     @EnumSource(StorerType.class)
     void canWriteReadRestartAndReadAgain(StorerType storerType) {
-        mockContext = mock(ApplicationContext.class);
+        context = new AnnotationConfigApplicationContext();
 
         writeData(storerType);
         log.info("Storage manager shut down. Restarting...");
@@ -35,7 +37,7 @@ class EclipseAccountAdapterTest {
 
     private void writeData(StorerType storerType) {
         try (EmbeddedStorageManager storageManager = startStorageManager()) {
-            adapter = new EclipseAccountAdapter(storageManager, mockContext);
+            adapter = new EclipseAccountAdapter(storageManager, context);
             List<Account> accounts = adapter.findAll();
             assertThat(accounts).isEmpty();
 
@@ -50,7 +52,7 @@ class EclipseAccountAdapterTest {
 
     private void readData() {
         try (EmbeddedStorageManager storageManager = startStorageManager()) {
-            adapter = new EclipseAccountAdapter(storageManager, mockContext);
+            adapter = new EclipseAccountAdapter(storageManager, context);
             List<Account> allAccounts = adapter.findAll();
             assertThat(allAccounts).hasSize(1);
             assertThat(allAccounts.getFirst().username()).isEqualTo("Account A");
