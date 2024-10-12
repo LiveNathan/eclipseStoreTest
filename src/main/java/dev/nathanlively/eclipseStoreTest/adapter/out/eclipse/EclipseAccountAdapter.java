@@ -73,22 +73,6 @@ public class EclipseAccountAdapter {
         }
     }
 
-    public void storeAll(final Object... objects) {
-        try {
-            storageManager.storeAll(objects);
-        } catch (final Throwable t) {
-            onStorageFailure(t);
-        }
-    }
-
-    public void storeAll(Iterable<?> iterable) {
-        try {
-            storageManager.storeAll(iterable);
-        } catch (final Throwable t) {
-            onStorageFailure(t);
-        }
-    }
-
     private void onStorageFailure(final Throwable t) {
         if (storageManager != null && storageManager.isRunning()) {
             try {

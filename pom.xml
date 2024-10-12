@@ -73,15 +73,16 @@
                 <configuration>
                     <imageName>eclipse-store-test</imageName>
                     <!-- Experiment 5 -->
-<!--                    <agent>-->
-<!--                        <enabled>true</enabled>-->
-<!--                        <metadataCopy>-->
-<!--                            <merge>true</merge>-->
-<!--                            <outputDirectory>META-INF/native-image</outputDirectory>-->
-<!--                        </metadataCopy>-->
-<!--                    </agent>-->
+                    <fallback>false</fallback>
+                    <agent>
+                        <enabled>true</enabled>
+                        <metadataCopy>
+                            <merge>true</merge>
+                            <outputDirectory>META-INF/native-image</outputDirectory>
+                        </metadataCopy>
+                    </agent>
                     <buildArgs>
-                        <buildArg>-Ob</buildArg>
+                        <buildArg>--enable-native-access=ALL-UNNAMED</buildArg>
                     </buildArgs>
                 </configuration>
 
