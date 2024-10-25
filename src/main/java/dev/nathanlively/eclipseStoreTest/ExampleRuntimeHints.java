@@ -13,18 +13,16 @@ import org.springframework.aot.hint.RuntimeHintsRegistrar;
 public class ExampleRuntimeHints implements RuntimeHintsRegistrar {
     @Override
     public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
-        hints.reflection().registerType(EmbeddedStorageFoundation.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_METHODS);
-        hints.reflection().registerType(EmbeddedStorageFoundationFactory.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_METHODS);
-
+        hints.reflection().registerType(EmbeddedStorageFoundation.class, MemberCategory.values());
+        hints.reflection().registerType(EmbeddedStorageFoundationFactory.class, MemberCategory.values());
         hints.reflection().registerType(EclipseAccountAdapter.class, MemberCategory.values());
-        hints.reflection().registerType(EmbeddedStorageManager.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_METHODS);
-        hints.reflection().registerType(org.eclipse.serializer.persistence.binary.org.eclipse.serializer.collections.BinaryHandlerEqBulkList.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_METHODS, MemberCategory.DECLARED_FIELDS);
-        hints.reflection().registerType(org.eclipse.serializer.collections.EqBulkList.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.DECLARED_FIELDS);
-        hints.reflection().registerType(org.eclipse.serializer.equality.Equalator.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.DECLARED_FIELDS);
+        hints.reflection().registerType(EmbeddedStorageManager.class, MemberCategory.values());
+        hints.reflection().registerType(org.eclipse.serializer.persistence.binary.org.eclipse.serializer.collections.BinaryHandlerEqBulkList.class, MemberCategory.values());
+        hints.reflection().registerType(org.eclipse.serializer.collections.EqBulkList.class, MemberCategory.values());
+        hints.reflection().registerType(org.eclipse.serializer.equality.Equalator.class, MemberCategory.values());
         hints.reflection().registerType(org.eclipse.serializer.persistence.binary.types.BinaryPersistence.class, MemberCategory.values());
         hints.reflection().registerType(org.eclipse.serializer.reflect.XReflect.class, MemberCategory.values());
-        hints.reflection().registerType(Optional.class, MemberCategory.PUBLIC_FIELDS, MemberCategory.INVOKE_PUBLIC_METHODS);
-        hints.reflection().registerType(EqHashEnum.class, MemberCategory.PUBLIC_FIELDS, MemberCategory.DECLARED_FIELDS, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_METHODS, MemberCategory.INVOKE_DECLARED_METHODS);
+        hints.reflection().registerType(Optional.class, MemberCategory.values());
+        hints.reflection().registerType(EqHashEnum.class, MemberCategory.values());
     }
-
 }
