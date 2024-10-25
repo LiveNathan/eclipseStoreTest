@@ -71,6 +71,7 @@
                     </agent>
                     <buildArgs>
                         <buildArg>--enable-native-access=ALL-UNNAMED</buildArg>
+                        <buildArg>-H:AdditionalRuntimeOptions=--add-opens=java.base/java.util=ALL-UNNAMED</buildArg>
                     </buildArgs>
                 </configuration>
             </plugin>

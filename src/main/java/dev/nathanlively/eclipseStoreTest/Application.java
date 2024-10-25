@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportRuntimeHints;
 
-@ImportRuntimeHints(ExampleRuntimeHints.class)  // Experiment 2
+@ImportRuntimeHints(RuntimeHints.class)  // Experiment 2
 @RegisterReflectionForBinding({DataRoot.class, EclipseAccountAdapter.class, EmbeddedStorageManager.class})  // Experiment 1
 @SpringBootApplication
 public class Application {

@@ -7,12 +7,12 @@ import org.eclipse.store.integrations.spring.boot.types.factories.EmbeddedStorag
 import org.eclipse.store.storage.embedded.types.EmbeddedStorageFoundation;
 import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
 import org.springframework.aot.hint.MemberCategory;
-import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.aot.hint.TypeReference;
 
-public class ExampleRuntimeHints implements RuntimeHintsRegistrar {
+public class RuntimeHints implements RuntimeHintsRegistrar {
     @Override
-    public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
+    public void registerHints(org.springframework.aot.hint.RuntimeHints hints, ClassLoader classLoader) {
         hints.reflection().registerType(EmbeddedStorageFoundation.class, MemberCategory.values());
         hints.reflection().registerType(EmbeddedStorageFoundationFactory.class, MemberCategory.values());
         hints.reflection().registerType(EclipseAccountAdapter.class, MemberCategory.values());
@@ -24,5 +24,6 @@ public class ExampleRuntimeHints implements RuntimeHintsRegistrar {
         hints.reflection().registerType(org.eclipse.serializer.reflect.XReflect.class, MemberCategory.values());
         hints.reflection().registerType(Optional.class, MemberCategory.values());
         hints.reflection().registerType(EqHashEnum.class, MemberCategory.values());
+        hints.reflection().registerType(TypeReference.of("java.util.Collections$SetFromMap"), builder -> builder.withMembers(MemberCategory.values()));
     }
 }
